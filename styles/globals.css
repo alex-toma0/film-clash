@@ -20,7 +20,8 @@ a {
 
 .smooth-image {
   transition: opacity 1s;
-  max-width: 35%;
+  max-width: 56%;
+
 }
 
 .image-visible {

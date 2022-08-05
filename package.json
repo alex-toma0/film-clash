@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^9.9.1",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-transition-group": "^4.4.4"
+    "react-transition-group": "^4.4.4",
+    "sweetalert2": "^11.4.24",
+    "sweetalert2-react-content": "^5.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

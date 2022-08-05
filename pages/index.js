@@ -5,6 +5,8 @@ import Score from '../components/Score'
 import Header from '../components/Header'
 import { useEffect, useState } from 'react'
 import { useRouter} from 'next/router'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 export default function Home(props) {  
   const router = useRouter()
   const [guess, setGuess] = useState(0)
@@ -14,6 +16,8 @@ export default function Home(props) {
   const [right, setRight] = useState()
   const [loading, setLoading] = useState(false)
   const [showAlert, setAlert] = useState(false)
+  const MySwal = withReactContent(Swal)
+
   useEffect( () => {
     setLoading(true)
     const fetchMovies = async () => {
@@ -31,9 +35,19 @@ export default function Home(props) {
       setData(movieList)
     }
     if (showAlert) {
-      alert("Game over!")
-      setTimeout(()=>{}, 1000)
-      router.reload()
+      MySwal.fire({
+        icon: 'error',
+        title:<p className="text-red-400 font-bold text-5xl">Game over!</p>,
+        html:<div>
+        <p className="text-red-300 text-lg">Your score was</p><span className="text-red-400 font-bold text-3xl">{score}</span>
+        </div>,
+        background: '#4b5563',
+        showCloseButton: true,
+        confirmButtonColor: '#f87171',
+        didClose: ()=>{
+          router.reload()
+        }
+    })
     }
     // Load the movies initially
     if (guess === 0) {
@@ -42,7 +56,7 @@ export default function Home(props) {
 
     // When the user chose the first movie
     if (guess === 1) {
-      if (data[left].popularity <= data[right].popularity) {
+      if (data[left].popularity >= data[right].popularity) {
         setScore(score + 1)
         setGuess(0)
       }
@@ -52,7 +66,7 @@ export default function Home(props) {
     }
     // When the user chose the second movie
     if (guess === 2) {
-      if (data[right].popularity <= data[left].popularity) {
+      if (data[right].popularity >= data[left].popularity) {
         setScore(score + 1)
         setGuess(0)
       }
@@ -69,14 +83,16 @@ export default function Home(props) {
   }
 
   // Displays a loading message before data response is fetched
+  
   if (loading || !data)
     return <p>Loading...</p>
+
+  // Testing purposes
+  /*
   console.log(`left popularity: ${data[left].popularity}
     right popularity: ${data[right].popularity}`)
-  
-    
+  */
   return (
-    
       <div className="h-screen w-screen">
        <Header title="FilmClash"/>
        <Head>
