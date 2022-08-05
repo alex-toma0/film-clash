@@ -17,16 +17,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-.smooth-image {
-  transition: opacity 1s;
-  max-width: 56%;
-
-}
-
-.image-visible {
-  opacity: 1;
-}
-.image-hidden {
-  opacity: 0;
-}

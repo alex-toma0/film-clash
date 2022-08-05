@@ -94,18 +94,18 @@ export default function Home(props) {
   */
   return (
       <div className="h-screen w-screen">
-       <Header title="FilmClash"/>
-       <Head>
-        <title>Film Clash</title>
-       </Head>
-       <div className="flex flex-col w-full h-5/6 justify-center items-center bg-gradient-to-b from-gray-800 to-gray-600">
-        <div className="w-full flex flex-row justify-evenly items-center">
-          <MovieCard movie={data[left]} updateGuess={updateGuess} side="left"/>
-          <div className="text-2xl md:text-5xl font-extrabold text-red-400">VS</div>
-          <MovieCard movie={data[right]} updateGuess={updateGuess} side="right"/>
+        <Header title="FilmClash"/>
+        <Head>
+          <title>Film Clash</title>
+        </Head>
+        <div className="flex flex-col w-full h-5/6 justify-center items-center bg-gradient-to-b from-gray-800 to-gray-600">
+          <div className="w-full flex flex-row justify-evenly items-center">
+            <MovieCard movie={data[left]} updateGuess={updateGuess} side="left"/>
+            <div className="text-2xl md:text-5xl font-extrabold text-red-400">VS</div>
+            <MovieCard movie={data[right]} updateGuess={updateGuess} side="right"/>
+          </div>
+            <Score score={score} ></Score>
         </div>
-          <Score score={score} ></Score>
-         </div>
        </div>
      
   )
